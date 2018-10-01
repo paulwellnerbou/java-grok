@@ -1,3 +1,8 @@
+plugins {
+    id "com.jfrog.bintray" version "1.8.4"
+    id 'net.researchgate.release' version '2.6.0'
+}
+
 apply {
     plugin "base"
     plugin "java"
@@ -5,6 +10,8 @@ apply {
     plugin "jacoco"
     plugin "idea"
     plugin "eclipse"
+    plugin 'maven'
+    plugin 'maven-publish'
 }
 
 task wrapper(type: Wrapper) {
@@ -17,7 +24,7 @@ repositories {
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
-group = "io.krakens"
+group = "de.wellnerbou"
 archivesBaseName = "java-grok"
 
 ext {
@@ -76,3 +83,39 @@ jacocoTestReport {
         csv.enabled false
     }
 }
+
+
+bintray {
+    user = "$publishUser"
+    key = "$publishKey"
+    publications = ['mavenJava']
+
+    dryRun = false
+    publish = true
+
+    pkg {
+        userOrg = "$bintrayOrganisation"
+        repo = 'maven'
+        name = 'polopoly-policy-mock'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/paulwellnerbou/polopoly-policy-mock'
+    }
+}
+
+// user and key configuration for bintray deployment:
+// ./gradlew bintrayUpload -PpublishUser=<USER> -PpublishKey=<KEY>
+if (!project.hasProperty("publishUser")) {
+    ext.publishUser = ""
+}
+if (!project.hasProperty("publishKey")) {
+    ext.publishKey = ""
+}
+if (!project.hasProperty("publishPassword")) {
+    ext.publishPassword = ""
+}
+if (!project.hasProperty("bintrayOrganisation")) {
+    ext.bintrayOrganisation = 'wellnerbou-polopoly'
+}
+
+
+afterReleaseBuild.dependsOn bintrayUpload

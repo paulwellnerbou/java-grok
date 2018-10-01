@@ -33,6 +33,7 @@ Old release ([Link](https://mvnrepository.com/artifact/io.thekraken/grok))
 Example of how to use java-grok:
 
 ```java
+
 /* Create a new grokCompiler instance */
 GrokCompiler grokCompiler = GrokCompiler.newInstance();
 grokCompiler.registerDefaultPatterns();
