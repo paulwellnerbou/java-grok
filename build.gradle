@@ -94,11 +94,11 @@ bintray {
     publish = true
 
     pkg {
-        userOrg = "$bintrayOrganisation"
+        userOrg = ""
         repo = 'maven'
-        name = 'polopoly-policy-mock'
-        licenses = ['MIT']
-        vcsUrl = 'https://github.com/paulwellnerbou/polopoly-policy-mock'
+        name = 'java-grok'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/paulwellnerbou/java-grok'
     }
 }
 
@@ -113,9 +113,5 @@ if (!project.hasProperty("publishKey")) {
 if (!project.hasProperty("publishPassword")) {
     ext.publishPassword = ""
 }
-if (!project.hasProperty("bintrayOrganisation")) {
-    ext.bintrayOrganisation = 'wellnerbou-polopoly'
-}
-
 
 afterReleaseBuild.dependsOn bintrayUpload
