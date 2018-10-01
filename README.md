@@ -64,6 +64,7 @@ Java Grok support Gradle: `./gradlew assemble`
  * [@nokk](https://github.com/nokk)
  * [@wouterdb](https://github.com/wouterdb)
  * [@Leemoonsoo](https://github.com/Leemoonsoo)
+ * [@paulwellnerbou](https://github.com/paulwellnerbou)
 
 **Any contributions are warmly welcome**
 
